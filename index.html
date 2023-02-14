@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="logo"></a>
+        </div>
+        <nav class="nav">
+            <ul class="navbar">
+                <li><a href=#>Home</a></li>
+                <li><a href="./upcomingEvents.html">Upcoming Events</a ></li>
+                <li><a href="./pastEvents.html">Past Events</a></li>
+                <li><a href="./contact.html">Contact</a ></li>
+                <li><a href="./stats.html">Stats</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="slider">
+
+            <div class="backPage">
+                <a href="./pastEvents.html"> &lt;&lt; </a>
+            </div>
+            
+            <div class="currentPage">
+                <h2>Contact Us</h2>
+            </div>
+
+            <div class="forwardPage">
+                <a href="./stats.html"> &gt;&gt; </a>
+            </div>
+
+        </div>
+
+        <div class="events">
+            <div class="categorysSearch">
+                <div class="categorys">
+                    <label for="cat1">
+                        <input type="checkbox" name="cat1" id="cat1" value="cat1">Category
+                    </label>
+                    <label for="cat2">
+                        <input type="checkbox" name="cat2" id="cat2" value="cat2">Category
+                    </label>
+                    <label for="cat3">
+                        <input type="checkbox" name="cat3" id="cat3" value="cat3">Category
+                    </label>
+                    <label for="cat4">
+                        <input type="checkbox" name="cat4" id="cat4" value="cat4">Category
+                    </label>
+                    <label for="cat5">
+                        <input type="checkbox" name="cat5" id="cat5" value="cat5">Category
+                    </label>
+                </div>
+                <div class="search">
+                    <form action="get">
+                        <label for="search"></label>
+                        <input type="search" id="search" placeholder="Escribe algo...">
+                    </form>
+                    <button><box-icon name='search-alt-2' rotate='90' color='#ffffff' ></box-icon></button>
+                </div>
+            </div>
+            <div class="articles">
+                <div class="card">
+                        <img src="./img/Marathon.jpg" alt="marathon">
+                    <div class="content">
+                            <h3>Titulo</h3>
+                            <p>Texto descriptivo</p>
+                        <div class="contentPrice">
+                            <p>Price $0000</p>
+                            <a href="./details.html">ver más...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./img/Museum_Tour.jpg" alt="museum">
+                    <div class="content">
+                            <h3>Titulo</h3>
+                            <p>Texto descriptivo</p>
+                        <div class="contentPrice">
+                            <p>Price $0000</p>
+                            <a href="./details.html">ver más...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./img/Costume_Party.jpg" alt="party">
+                    <div class="content">
+                            <h3>Titulo</h3>
+                            <p>Texto descriptivo</p>
+                        <div class="contentPrice">
+                            <p>Price $0000</p>
+                            <a href="./details.html">ver más...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./img/Food_Fair.jpg" alt="food">
+                    <div class="content">
+                            <h3>Titulo</h3>
+                            <p>Texto descriptivo</p>
+                        <div class="contentPrice">
+                            <p>Price $0000</p>
+                            <a href="./details.html">ver más...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+
+    <footer>
+        <div class="footerIcons">
+            <div>
+                <a href="https://www.instagram.com/"><box-icon name='instagram' type='logo' color='#ffffff' ></box-icon></a>
+                <a href="https://www.facebook.com/"><box-icon name='facebook-square' type='logo' color='#ffffff' ></box-icon></a>
+                <a href="https://www.whatsapp.com/"><box-icon type='logo' name='whatsapp' color='#ffffff'></box-icon></a>
+            </div>
+            <h3>Cohort</h3>
+        </div>
+    </footer>
+    <script src="./js/scripts.js"></script>
+</body>
+</html>
