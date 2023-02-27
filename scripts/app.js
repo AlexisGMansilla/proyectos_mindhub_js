@@ -18,5 +18,4 @@ let eventCard = `
 `;
 card.innerHTML += eventCard;
 articles.appendChild(card);
-
 });
