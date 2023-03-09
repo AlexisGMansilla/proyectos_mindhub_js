@@ -4,21 +4,21 @@
 // Obtenemos las categorías sin repetir
 
 let unicos = [];
-    
+
 data.events.forEach((element, i ) =>{
-    
+
     if(!unicos.includes(data.events[i].category)){
         unicos.push(data.events[i].category)
     }
-
+    
 });
 
 // Generamos las categorías dinámicamente
 
 unicos.forEach((element, i)=>{
     let categorys = document.querySelector(".categorys");
-
     let checkBox = document.createElement('label');
+
     let dinamicCheckBox = `
     <input type="checkbox" name="category" id="${unicos[i]}" value="${unicos[i]}">${unicos[i]}
     `;

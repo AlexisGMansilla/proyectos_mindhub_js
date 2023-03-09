@@ -58,9 +58,17 @@ function filterCards(e){
 // Filtramos las cards según la búsqueda y las categorías seleccionadas
 
     let filteredCards = data.events.filter(card => {
+
+        // Primero filtramos la cards por fecha
+        if(card.date > data.currentDate){
+            
         let matchesSearch = card.name.toLowerCase().includes(searchTerm) || card.description.toLowerCase().includes(searchTerm)
         let matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(card.category.toLowerCase())
         return matchesSearch && matchesCategory
+        }
+        else{
+            notFoundMessage.style.display = 'block'
+        }
     })
 
 // Mostramos los productos filtrados
@@ -69,7 +77,6 @@ function filterCards(e){
         notFoundMessage.style.display = 'none'
     } else {
         articles.innerHTML = ''
-        notFoundMessage.style.display = 'block'
     }
 }
 
@@ -78,7 +85,6 @@ function filterCards(e){
 function showCards(cards){
     let html = '';
     cards.forEach(product => {
-    if(product.date > data.currentDate){ 
         html += `
         <div class="card">
         <img src=${product.image} alt="event image">
@@ -91,10 +97,7 @@ function showCards(cards){
             </div>
         </div>
         </div>
-    `;}
-            else{
-                        notFoundMessage.style.display = 'block'
-            }
+    `;
     });
     articles.innerHTML = html;
 }
