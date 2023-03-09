@@ -165,6 +165,7 @@ main .events .categorysSearch .categorys input{
 main .events .categorysSearch .search{
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-bottom: 20px;
 }
 main .events .categorysSearch .search input{
@@ -224,6 +225,9 @@ main .events .card img{
 }
 main .events .content{
     margin: 10px 15px 15px 15px;
+}
+main .events .content h3{
+    margin-bottom: 5px;
 }
 main .events .contentPrice{
     display: flex;
@@ -388,23 +392,24 @@ main .containerCardDetail .cardDetail .imgDetail img:hover{
 }
 main .containerCardDetail .cardDetail .contentDetail{
     background-color: rgba(255, 255, 255, 0.5);
-    width: 50%;
+    width: 40%;
     height: auto;  
     border-radius: 15px;
     overflow: hidden;
-    margin: 25px;
+    margin: 25px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+
 }
 main .containerCardDetail .cardDetail .contentDetail h3{
+    align-self: center;
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 main .containerCardDetail .cardDetail .contentDetail p{
     font-size: 18px;
-    margin: 0px 15px;
+    margin: 4px 20px;
 }
 
 
@@ -518,16 +523,17 @@ footer .footerIcons box-icon:hover{
     main .containerCardDetail .cardDetail{
         flex-wrap: wrap;
         justify-content: center;
+        width: 360px;
+        height: auto;
     }
     main .containerCardDetail .cardDetail .imgDetail{
         width: 100%;
-        margin: 5px;
-        overflow: hidden;
+        padding: 12px;
+        margin: 10px 0px 10px 0px;
     }
     main .containerCardDetail .cardDetail .contentDetail{
         width: 100%;
-        margin: 5px;
-        overflow: hidden;
+        margin: 0px 10px 15px 10px;
     }
     footer .footerIcons{
         padding: 0;
@@ -560,4 +566,18 @@ footer .footerIcons box-icon:hover{
     main .events .categorysSearch .search input{
         width: 350px;
     }
+}
+
+
+.filter{
+    display: none;
+}
+.not-found{
+    display: none;
+    background-color: rgb(255, 255, 255);
+    margin: 10px 0px 10px 0px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: center;
 }
