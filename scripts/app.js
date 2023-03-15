@@ -22,8 +22,6 @@ async function loadArray() {
 // Obtenemos las categorías sin repetir
 let unicos = [];
 function catUnicos(arr) {
-
-
     arr.forEach((element, i ) =>{
 
     if(!unicos.includes(arr[i].category)){

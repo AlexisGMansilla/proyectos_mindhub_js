@@ -2,25 +2,33 @@ let arrayEvents = [];
 let currentDate;
 const API_URL = 'https://mindhub-xj03.onrender.com/api/amazing';
 
+// Llamamos a la API y obtenemos el resultado en json
 async function loadArray() {
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
+// Asignamos a las variables el array de objetos y la fecha
       arrayEvents = data.events;
       currentDate = data.currentDate;
+// Variables Globales
       globalThis.arrayEventsUpc = arrayEvents.filter(objeto => objeto.date > currentDate);
       globalThis.arrayEventsPast = arrayEvents.filter(objeto => objeto.date < currentDate);
+// Función que muestra los eventos
       showEvents()
     } catch (error) {
-      console.error(error);
+// Si hay un error, lo muestra en la consola
+      console.error(error); 
     }
   }
 
+// Elementos HTML necesitados
 let highAtt = document.getElementById("highAtt")
 let lowAtt = document.getElementById("lowAtt")
 let largCap = document.getElementById("largCap")
 let html = '';
 
+
+// Función para mostrar los eventos correspondientes a la tabla
 
 function showEvents(){ 
     eventsPerAttendance();
@@ -30,6 +38,8 @@ function showEvents(){
     eveCategories(pastResult , pastEveCat, 1);
 }
 
+// Muestra la primera parte de la tabla en el HTML
+
 function showInHTML(card, td){
     html = `
     <a class="tableEventsName" href="./details.html?_id=${card._id}">${card.name}</a>
@@ -38,6 +48,7 @@ function showInHTML(card, td){
 }
 
 
+// Obtiene y muestra la mayor y menor asistencia y la capacidad máxima 
 
 function eventsPerAttendance() {
     let arrayEventsPast = arrayEvents.filter(objeto => objeto.date < currentDate);
@@ -64,12 +75,14 @@ function eventsPerAttendance() {
     });
 }
 
-
+// Elementos HTML necesitados
 let upcEveCat = document.querySelector(".upcEveCat")
 let pastEveCat = document.querySelector(".pastEveCat")
+// Array necesitados
 let result = [];
 let pastResult = [];
 
+// Obtiene y crea un nuevo array con los eventos necesitados y sus respectivas propiedades
 
 function catUnix(arrayEvent, newArray, estOrAssit){
 for (let i = 0; i < arrayEvent.length; i++) {
@@ -96,11 +109,13 @@ for (let i = 0; i < arrayEvent.length; i++) {
 
 }
 
+// Funcion que muestra los eventos correspondientes 
 
 function eveCategories(resultx, lugarHTML, x){
     showCatInHTML(resultx, lugarHTML, x)
 }
 
+// Funcion que muestra en el HTML los eventos correspondientes con su respectiva lógica
 function showCatInHTML(card, lugarHTML, x) {
     if(x===0){
         card.forEach((element,i)=>{
