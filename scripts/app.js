@@ -1,21 +1,40 @@
+let arrayEvents = [];
+const API_URL = 'https://mindhub-xj03.onrender.com/api/amazing';
+
+async function loadArray() {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      arrayEvents = data.events;
+
+      catUnicos(arrayEvents)
+      filterCards(new Event("submit"))
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
 //                          Categorías Dinámicas sin repetir
 
 
 // Obtenemos las categorías sin repetir
-
 let unicos = [];
+function catUnicos(arr) {
 
-data.events.forEach((element, i ) =>{
 
-    if(!unicos.includes(data.events[i].category)){
-        unicos.push(data.events[i].category)
+    arr.forEach((element, i ) =>{
+
+    if(!unicos.includes(arr[i].category)){
+        unicos.push(arr[i].category)
     }
     
-});
+})
 
-// Generamos las categorías dinámicamente
+//  Generamos las categorías dinámicamente
 
-unicos.forEach((element, i)=>{
+    unicos.forEach((element, i)=>{
     let categorys = document.querySelector(".categorys");
     let checkBox = document.createElement('label');
 
@@ -26,6 +45,10 @@ unicos.forEach((element, i)=>{
     categorys.appendChild(checkBox);
 })
 
+}
+
+
+
 
 //                          Busqueda y Categorias
 
@@ -34,7 +57,6 @@ unicos.forEach((element, i)=>{
 
 let form = document.getElementById("search-form")
 let searchInput = document.getElementById("search")
-let categoryCheckboxes = document.querySelectorAll('input[type="checkbox"]')
 let articles = document.querySelector(".articles");
 let notFoundMessage = document.querySelector('.not-found');
 
@@ -42,6 +64,7 @@ let notFoundMessage = document.querySelector('.not-found');
 // Función para filtrar los productos según la búsqueda y las categorías seleccionadas
 
 function filterCards(e){
+    let categoryCheckboxes = document.querySelectorAll('input[type="checkbox"]')
 
 // Evita que se recargue la página
 
@@ -56,8 +79,8 @@ function filterCards(e){
     let selectedCategories = Array.from(categoryCheckboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value.toLowerCase())
 
 // Filtramos las cards según la búsqueda y las categorías seleccionadas
-
-    let filteredCards = data.events.filter(card => {
+    
+    let filteredCards = arrayEvents.filter(card => {
         let matchesSearch = card.name.toLowerCase().includes(searchTerm) || card.description.toLowerCase().includes(searchTerm)
         let matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(card.category.toLowerCase())
         return matchesSearch && matchesCategory
@@ -97,4 +120,4 @@ function showCards(cards){
 
 // Event listener para el submit del formulario
 form.addEventListener("submit", filterCards)
-filterCards(new Event("submit"))
+loadArray();

@@ -1,30 +1,56 @@
+let arrayEvents = [];
+let currentDate;
+const API_URL = 'https://mindhub-xj03.onrender.com/api/amazing';
+
+async function loadArray() {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      arrayEvents = data.events;
+      currentDate = data.currentDate;
+      catUnicos(arrayEvents)
+      filterCards(new Event("submit"))
+    //   console.log(array);
+    // //   showArray();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+
 //                          Categorías Dinámicas sin repetir
 
 
 // Obtenemos las categorías sin repetir
-
 let unicos = [];
-    
-data.events.forEach((element, i ) =>{
-    
-    if(!unicos.includes(data.events[i].category)){
-        unicos.push(data.events[i].category)
+function catUnicos(arr) {
+
+
+    arr.forEach((element, i ) =>{
+
+    if(!unicos.includes(arr[i].category)){
+        unicos.push(arr[i].category)
     }
+    
+})
 
-});
+//  Generamos las categorías dinámicamente
 
-// Generamos las categorías dinámicamente
-
-unicos.forEach((element, i)=>{
+    unicos.forEach((element, i)=>{
     let categorys = document.querySelector(".categorys");
-
     let checkBox = document.createElement('label');
+
     let dinamicCheckBox = `
     <input type="checkbox" name="category" id="${unicos[i]}" value="${unicos[i]}">${unicos[i]}
     `;
     checkBox.innerHTML += dinamicCheckBox;
     categorys.appendChild(checkBox);
 })
+
+}
+
+
 
 
 //                          Busqueda y Categorias
@@ -34,7 +60,6 @@ unicos.forEach((element, i)=>{
 
 let form = document.getElementById("search-form")
 let searchInput = document.getElementById("search")
-let categoryCheckboxes = document.querySelectorAll('input[type="checkbox"]')
 let articles = document.querySelector(".articles");
 let notFoundMessage = document.querySelector('.not-found');
 
@@ -42,6 +67,7 @@ let notFoundMessage = document.querySelector('.not-found');
 // Función para filtrar los productos según la búsqueda y las categorías seleccionadas
 
 function filterCards(e){
+    let categoryCheckboxes = document.querySelectorAll('input[type="checkbox"]')
 
 // Evita que se recargue la página
 
@@ -56,18 +82,14 @@ function filterCards(e){
     let selectedCategories = Array.from(categoryCheckboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value.toLowerCase())
 
 // Filtramos las cards según la búsqueda y las categorías seleccionadas
+    
+    let filteredCards = arrayEvents.filter(card => {
 
-    let filteredCards = data.events.filter(card => {
-
-        // Primero filtramos la cards por fecha
-        if(card.date > data.currentDate){
+        if(card.date > currentDate){
             
         let matchesSearch = card.name.toLowerCase().includes(searchTerm) || card.description.toLowerCase().includes(searchTerm)
         let matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(card.category.toLowerCase())
         return matchesSearch && matchesCategory
-        }
-        else{
-            notFoundMessage.style.display = 'block'
         }
     })
 
@@ -77,6 +99,7 @@ function filterCards(e){
         notFoundMessage.style.display = 'none'
     } else {
         articles.innerHTML = ''
+        notFoundMessage.style.display = 'block'
     }
 }
 
@@ -85,23 +108,23 @@ function filterCards(e){
 function showCards(cards){
     let html = '';
     cards.forEach(product => {
-        html += `
-        <div class="card">
-        <img src=${product.image} alt="event image">
-        <div class="content">
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-            <div class="contentPrice">
-                <p>Price: $${product.price}</p>
-                <a href="./details.html?_id=${product._id}">ver más...</a>
-            </div>
-        </div>
-        </div>
-    `;
+      html += `
+      <div class="card">
+      <img src=${product.image} alt="event image">
+      <div class="content">
+              <h3>${product.name}</h3>
+              <p>${product.description}</p>
+          <div class="contentPrice">
+              <p>Price: $${product.price}</p>
+              <a href="./details.html?_id=${product._id}">ver más...</a>
+          </div>
+      </div>
+      </div>
+`;
     });
     articles.innerHTML = html;
 }
 
 // Event listener para el submit del formulario
 form.addEventListener("submit", filterCards)
-filterCards(new Event("submit"))
+loadArray();
