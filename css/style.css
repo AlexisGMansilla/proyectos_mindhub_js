@@ -179,13 +179,6 @@ main .events .categorysSearch .search input{
     outline: none;
 }
 
-main .events .categorysSearch .search button{
-    background-color: black;
-    margin: 0 10px;
-    height: 28px;
-    width: auto;
-}
-
 
 
 /*              CARDS              */
@@ -520,7 +513,7 @@ footer .footerIcons box-icon:hover{
    
    
     main .events .categorysSearch .search input{
-        width: 250px;
+        width: 300px;
     }
     main .events .articles {
         width: 100%;
@@ -575,7 +568,7 @@ footer .footerIcons box-icon:hover{
         margin-top: 20px;
     }
     main .events .categorysSearch .search input{
-        width: 350px;
+        width: 400px;
     }
 }
 

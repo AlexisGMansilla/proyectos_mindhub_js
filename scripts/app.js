@@ -92,6 +92,10 @@ function filterCards(e){
         articles.innerHTML = ''
         notFoundMessage.style.display = 'block'
     }
+    // Event listener para los elementos de búsqueda y categorías
+    searchInput.addEventListener("input", filterCards);
+    categoryCheckboxes.forEach(checkbox => checkbox.addEventListener("change", filterCards));
+
 }
 
 // Función para mostrar las cards en la página
@@ -116,6 +120,4 @@ function showCards(cards){
     articles.innerHTML = html;
 }
 
-// Event listener para el submit del formulario
-form.addEventListener("submit", filterCards)
 loadArray();

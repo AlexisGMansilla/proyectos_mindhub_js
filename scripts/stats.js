@@ -86,27 +86,32 @@ let pastResult = [];
 
 function catUnix(arrayEvent, newArray, estOrAssit){
 for (let i = 0; i < arrayEvent.length; i++) {
+    if(estOrAssit === 0){
+        totalRev = arrayEvent[i].price * arrayEvent[i].estimate;
+    }
+    else{
+        totalRev = arrayEvent[i].price * arrayEvent[i].assistance;
+    }
     let category = arrayEvent[i].category;
-    let price = arrayEvent[i].price;
     let estimate = arrayEvent[i].estimate;
     let assistance = arrayEvent[i].assistance;
     let capacity = arrayEvent[i].capacity;
     let existeCategory = newArray.findIndex((item) => item.category === category);
     
     if (existeCategory === -1 ) {
-      newArray.push({ category, price, estimate, assistance, capacity});
+      newArray.push({ category, estimate, assistance, capacity, totalRev});
     } else if(estOrAssit === 0){
-      newArray[existeCategory].price  += price ;
+      newArray[existeCategory].totalRev  += totalRev ;
       newArray[existeCategory].estimate += estimate;
       newArray[existeCategory].capacity += capacity;
     }
     else{
-        newArray[existeCategory].price  += price ;
+        newArray[existeCategory].totalRev  += totalRev ;
         newArray[existeCategory].assistance += assistance;
         newArray[existeCategory].capacity += capacity;
     }
   }
-
+  console.log(pastResult);
 }
 
 // Funcion que muestra los eventos correspondientes 
@@ -122,7 +127,7 @@ function showCatInHTML(card, lugarHTML, x) {
             let htmlTD = '';
             let x = card[i].estimate*100/card[i].capacity;
             let percentage = x.toFixed(2)
-            let rev = card[i].price*card[i].estimate;
+            let rev = card[i].totalRev;
             let revenues = rev.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
             let TR = document.createElement('tr')
             htmlTD += `
@@ -138,7 +143,7 @@ function showCatInHTML(card, lugarHTML, x) {
             let htmlTD = '';
             let x = card[i].assistance*100/card[i].capacity;
             let percentage = x.toFixed(2)
-            let rev = card[i].price*card[i].assistance;
+            let rev = card[i].totalRev;
             let revenues = rev.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0});
             let TR = document.createElement('tr')
             htmlTD += `
