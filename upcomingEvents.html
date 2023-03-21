@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="logo"></a>
+        </div>
+        <nav class="nav">
+            <ul class="navbar">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href=#>Upcoming Events</a ></li>
+                <li><a href="./pastEvents.html">Past Events</a></li>
+                <li><a href="./contact.html">Contact</a ></li>
+                <li><a href="./stats.html">Stats</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="slider">
+
+            <div class="backPage">
+                <a href="./index.html"> &lt;&lt; </a>
+            </div>
+            
+            <div class="currentPage">
+                <h2>Upcoming Events</h2>
+            </div>
+
+            <div class="forwardPage">
+                <a href="./pastEvents.html"> &gt;&gt; </a>
+            </div>
+
+        </div>
+
+        <div class="events" id="app">
+            <div class="categorysSearch">
+                <form id="search-form">
+                <div class="search">
+                        <label for="search"></label>
+                        <input v-model="texto" type="search" id="search" placeholder="Escribe algo...">
+                        {{filtrarTodo}}
+                </div>
+                <div class="categorys" >
+                    <label v-for="category of categorys">
+                        <input v-model="categorysSeleccionadas" type="checkbox" name="category" :id="category" :value="category">{{category}}
+                    </label>
+                </div>
+            </form>
+            </div>
+
+            <div class="articles">
+                <div v-for="event of events" class="card">
+                        <img :src="event.image" alt="event image">
+                    <div class="content">
+                            <h3>{{event.name}}</h3>
+                            <p>{{event.description}}</p>
+                        <div class="contentPrice">
+                            <p>Price ${{event.price}}</p>
+                            <a :href="'./details.html?_id=' + event._id">ver más...</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div v-if="events.length == 0" class="not-found"> <p>No se han encontrado <b>resultados</b>.
+                Comprueba que el término de búsqueda esté escrito correctamente o intenta buscar otra cosa.</p>
+            </div>
+            
+        </div>
+
+    </main>
+    
+
+    <footer>
+        <div class="footerIcons">
+            <div>
+                <a href="https://www.instagram.com/"><box-icon name='instagram' type='logo' color='#ffffff' ></box-icon></a>
+                <a href="https://www.facebook.com/"><box-icon name='facebook-square' type='logo' color='#ffffff' ></box-icon></a>
+                <a href="https://www.whatsapp.com/"><box-icon type='logo' name='whatsapp' color='#ffffff'></box-icon></a>
+            </div>
+            <h3>Cohort</h3>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./scripts/appUpcomingEvents.js"></script>
+</body>
+</html>

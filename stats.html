@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="logo"></a>
+        </div>
+        <nav class="nav">
+            <ul class="navbar">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./upcomingEvents.html">Upcoming Events</a ></li>
+                <li><a href="./pastEvents.html">Past Events</a></li>
+                <li><a href="./contact.html">Contact</a ></li>
+                <li><a href=#>Stats</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+      <div class="slider">
+
+        <div class="backPage">
+            <a href="./contact.html"> &lt;&lt; </a>
+        </div>
+        
+        <div class="currentPage">
+            <h2>Stats</h2>
+        </div>
+
+        <div class="forwardPage">
+            <a href=#> &gt;&gt; </a>
+        </div>
+
+    </div>
+
+        <div class="containerTable" id="app">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="3" class="tc">Events Statistics</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tc">Events with the highest percentage of attendance</td>
+                    <td class="tc">Events with the lowest percentage of attendance</td>
+                    <td class="tc">Event with larger capacity</td>
+                  </tr>
+                  <tr>
+                    {{eventsPerAttendance}}
+                    <td class="tc">
+                      <a class="tableEventsName" :href="'./details.html?_id=' + filtrarHighAtt._id">{{filtrarHighAtt.name}}</a>
+                    </td>
+                    <td class="tc">
+                      <a class="tableEventsName" :href="'./details.html?_id=' + filtrarLowAtt._id">{{filtrarLowAtt.name}}</a>
+                    </td>
+                    <td class="tc">
+                      <a class="tableEventsName" :href="'./details.html?_id=' + filtrarLargerCapacity._id">{{filtrarLargerCapacity.name}}</a>
+                    </td>
+                  </tr>
+                </tbody>
+
+                <thead>
+                    <tr>
+                      <th colspan="3" class="tc">Upcoming events statistics by category</th>
+                    </tr>
+                  </thead>
+                  <tbody class="upcEveCat">
+                    <tr>
+                      <td class="tc">Categories</td>
+                      <td class="tc">Revenues (estimated)</td>
+                      <td class="tc">Percentage of attendance (estimated)</td>
+                    </tr>
+
+                    <tr v-for="category of eventsUpcFiltred">
+                      <td class="tc">{{category.category}}</td>
+                      <td class="tc">{{(category.totalRev).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0})}}</td>
+                      <td class="tc">{{(category.estimate*100/category.capacity).toFixed(2)}}%</td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <th colspan="3" class="tc">Past Events statistics by category</th>
+                    </tr>
+                  </thead>
+                  <tbody class="pastEveCat">
+                    <tr>
+                      <td class="tc">Categories</td>
+                      <td class="tc">Revenues</td>
+                      <td class="tc">Percentage of attendance</td>
+                    </tr>
+                    <tr v-for="category of eventsPastFiltred">
+                      <td class="tc">{{category.category}}</td>
+                      <td class="tc">{{(category.totalRev).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0})}}</td>
+                      <td class="tc">{{(category.assistance*100/category.capacity).toFixed(2)}}%</td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footerIcons">
+            <div>
+                <a href="https://www.instagram.com/"><box-icon name='instagram' type='logo' color='#ffffff' ></box-icon></a>
+                <a href="https://www.facebook.com/"><box-icon name='facebook-square' type='logo' color='#ffffff' ></box-icon></a>
+                <a href="https://www.whatsapp.com/"><box-icon type='logo' name='whatsapp' color='#ffffff'></box-icon></a>
+            </div>
+            <h3>Cohort</h3>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./scripts/stats.js"></script>
+</body>
+</html>
